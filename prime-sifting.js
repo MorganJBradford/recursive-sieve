@@ -16,17 +16,17 @@ const listCreator = (numArray) => {
   }
 }
 
-const allPrimes = (num, counter = num - 1, userList = listCreator([])(2)(num)(0)) => {
-  if(counter > 1 && userList.includes(num)) {
-    if (num % counter === 0 && num !== 2) {
+const allPrimes = (num, counter = 3, userList = listCreator([])(2)(num)(0)) => {
+  if(counter < num && userList.includes(num)) {
+    if ((num % counter || num % 2) === 0 && num !== 2) {
       userList.splice(num - 2, 1);
-      return allPrimes(num - 1, counter - 1, userList);
+      return allPrimes(num - 1, counter + 2, userList);
     }
-    return allPrimes(num, counter - 1, userList);
+    return allPrimes(num, counter + 2, userList);
   }
   if (num > 2) {
     const newNum = num - 1;
-    return allPrimes(newNum, counter = newNum - 1, userList);
+    return allPrimes(newNum, counter = 2, userList);
   }
   return userList;
 }
