@@ -10,11 +10,6 @@
 //   return userList;
 // }
 
-
-
-
-
-
 // startNum, endNum, 
 
 // 2,3,4,5,6,7,8,9,10
@@ -58,9 +53,10 @@ const listCreator = (numArray) => {
 }
 
 const allPrimes = (num, counter = num - 1, userList = listCreator([])(2)(num)(0)) => {
-  if(counter > 1) {
-    if (num % counter === 0 && userList.includes(num) && num !== 2) {
+  if(counter > 1 && userList.includes(num)) {
+    if (num % counter === 0 && num !== 2) {
       userList.splice(num - 2, 1);
+      return allPrimes(num - 1, counter - 1, userList);
     }
     return allPrimes(num, counter - 1, userList);
   }
@@ -72,10 +68,6 @@ const allPrimes = (num, counter = num - 1, userList = listCreator([])(2)(num)(0)
 }
 // [2, 3, 4, n, i]
 // [2, 3, 4, n, i]
-
-
-
-
 
 // const numPrimes = (num) => {
 //   if (num > 1) {
